@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f9fc">
+  <meta name="description" content="Consulta tus facturas y realiza pagos seguros desde RMM Enterprise.">
+  <title>Facturación | RMM Enterprise</title>
+  <link rel="icon" type="image/svg+xml" href="rmm-icon.svg?v=20261103-1">
+  <link rel="stylesheet" href="solucion.css?v=20261106-1">
+  <script type="module" src="solucion.js?v=20261106-1"></script>
+</head>
+<body>
+  <header class="site-header checkout-site-header">
+    <a class="brand" href="solucion.html#inicio" aria-label="RMM Enterprise, inicio">
+      <span class="brand-symbol" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none"><path d="M20 3.5 35 12v16L20 36.5 5 28V12L20 3.5Z" stroke="currentColor" stroke-width="2"/><path d="M12 27V13h8.2a5 5 0 0 1 1.6 9.7L27 27m-9.5-6h5.3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand-name">RMM <strong>ENTERPRISE</strong><small>GESTIÓN DE TI</small></span>
+    </a>
+    <a class="checkout-site-link" href="solucion.html">Volver al sitio</a>
+  </header>
+
+  <main class="checkout-page">
+    <div class="checkout-heading">
+      <p class="checkout-breadcrumb"><a href="solucion.html">Inicio</a><span aria-hidden="true">/</span> Facturación</p>
+      <h1>Facturación</h1>
+      <p>Consulta tus facturas y realiza tus pagos.</p>
+    </div>
+
+    <p class="payment-status checkout-status" id="portal-status" role="status" aria-live="polite" hidden></p>
+
+    <div class="checkout-layout">
+      <section class="checkout-invoices-card" aria-labelledby="invoices-title">
+        <div class="checkout-card-heading">
+          <h2 id="invoices-title">Mis facturas</h2>
+          <p>Ingresa a tu cuenta para consultar las facturas asociadas.</p>
+        </div>
+
+        <div class="portal-unavailable" id="portal-unavailable">
+          <h3>El portal aún no está habilitado</h3>
+          <p>Estamos terminando la configuración del servicio de pagos. Por ahora, no ingreses tus datos de acceso.</p>
+          <a href="https://wa.me/573156903200?text=Hola%2C%20quisiera%20consultar%20sobre%20el%20centro%20de%20pagos." target="_blank" rel="noopener noreferrer">Contactar a soporte <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <form class="portal-login-form checkout-login" id="portal-login-form" hidden>
+          <p>Usa las credenciales que te compartió nuestro equipo.</p>
+          <label for="portal-email">Correo electrónico</label>
+          <input id="portal-email" name="email" type="email" autocomplete="username" required>
+          <label for="portal-login-password">Contraseña</label>
+          <input id="portal-login-password" name="password" type="password" autocomplete="current-password" required>
+          <button class="button button-primary portal-submit" id="portal-login-submit" type="submit">Ingresar a mis facturas</button>
+          <button class="portal-reset" id="portal-reset" type="button">Olvidé mi contraseña</button>
+          <p class="portal-help">¿Necesitas acceso? <a href="https://wa.me/573156903200?text=Hola%2C%20necesito%20acceso%20al%20centro%20de%20pagos%20de%20RMM%20Enterprise." target="_blank" rel="noopener noreferrer">Solicítalo a nuestro equipo ↗</a></p>
+        </form>
+
+        <form class="portal-login-form checkout-login" id="portal-password-update-form" hidden>
+          <p>Elige una nueva contraseña para proteger el acceso a tu cuenta.</p>
+          <label for="portal-password">Nueva contraseña</label>
+          <input id="portal-password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+          <label for="portal-confirm-password">Confirma la contraseña</label>
+          <input id="portal-confirm-password" name="password-confirmation" type="password" autocomplete="new-password" minlength="8" required>
+          <button class="button button-primary portal-submit" id="portal-password-submit" type="submit">Guardar contraseña</button>
+        </form>
+
+        <div class="portal-account checkout-account" id="portal-account" hidden>
+          <div class="portal-account-header checkout-account-header"><span id="portal-user-email"></span><button class="portal-logout" id="portal-logout" type="button">Cerrar sesión</button></div>
+          <div class="invoice-heading"><h3>Facturas de tu cuenta</h3><button class="invoice-refresh" id="invoice-refresh" type="button">Actualizar</button></div>
+          <div class="invoice-list" id="invoice-list"></div>
+        </div>
+      </section>
+
+      <aside class="payment-summary" aria-labelledby="summary-title">
+        <div class="summary-heading"><h2 id="summary-title">Resumen</h2></div>
+        <div class="summary-empty" id="payment-summary-empty">
+          <p>Selecciona una factura pendiente para ver el total.</p>
+        </div>
+        <div class="summary-details" id="payment-summary-details" hidden>
+          <p class="summary-label">FACTURA</p>
+          <p class="summary-invoice" id="selected-invoice"></p>
+          <div class="summary-total"><span>Total a pagar</span><strong id="payment-total"></strong></div>
+        </div>
+        <button class="button button-primary payment-submit" id="payment-submit" type="button" disabled>Pagar ahora</button>
+        <p class="summary-security">El pago se procesa de forma segura en Wompi.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer checkout-footer">
+    <span>RMM Enterprise</span>
+    <a href="https://wa.me/573156903200?text=Hola%2C%20necesito%20ayuda%20con%20mi%20factura." target="_blank" rel="noopener noreferrer">¿Necesitas ayuda? Contacta a soporte</a>
+  </footer>
+</body>
+</html>
